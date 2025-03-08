@@ -1,0 +1,62 @@
+# Ignore environment variable files
+.env
+
+# Ignore temporary and generated files
+draft.md
+
+# Ignore log files and caches
+**/*.log
+logs/
+**/.log/
+
+# Ignore Jupyter Notebook checkpoints
+**/.ipynb_checkpoints/
+
+# Ignore compiled Python files
+**/__pycache__/
+**/*.pyc
+**/*.pyo
+**/*.pyd
+
+# Ignore virtual environments
+.venv/
+venv/
+env/
+
+# Ignore Conda environments
+conda_env/
+*.conda
+*.pickle
+
+# Ignore build, distribution, and package files
+build/
+dist/
+*.egg-info/
+.eggs/
+*.manifest
+*.spec
+
+# Ignore IDE and editor-specific files
+.vscode/
+.idea/
+*.swp
+*.swo
+*.swn
+*.bak
+*.orig
+
+# Ignore draft and temporary working directories
+/draft_notebooks/
+/_some_search/
+
+# Ignore database files and serialized objects
+data/*.db
+data/*.sqlite
+*.pkl
+*.jsonl
+
+# Ignore cached models and datasets
+.cache/
+data/cache/
+text2sql/logs/
+text2sql/models/
