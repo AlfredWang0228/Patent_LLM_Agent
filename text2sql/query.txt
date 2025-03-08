@@ -1,0 +1,28 @@
+query = "help me find the patent document for US20190160148A1"
+query1 = "How many total claims does each patent have?"
+query2 = "whats the claims of US20220380469A1?"
+query3 = "how many compositions mentioned in patent of US20220380469A1"
+query4 = "summary the claims of US20220380469A1"
+query5 = "tell me everything about patent of US20220380469A1"
+
+
+What does the `patents` table store?
+Which column in the `inventors` table links each inventor to a specific patent?
+Which table lists the companies or organizations that own the rights to a patent, and how does it link to the `patents` table?
+Show me all column names and their meanings from the `prior_art_keywords` table.
+Which `title` in the `patents` table has the earliest `publication_date`?
+Find all patents in the `patents` table whose `abstract` contains the word ‘cancer’.
+How many distinct inventors are stored in the `inventors` table?
+Retrieve each `patent_id` along with all associated `inventor_name` values by joining the `patents` and `inventors` tables.
+List all `events` in the `events` table that are marked as `critical = 1` for a specific `patent_id`.
+How many total claims does each patent have? (Join `patents` with `claims` and group by `patent_id`.)
+Show the patent title, the assignee name, and the date of each `legal_events` record in one combined result set.
+Which `patent_id` values in the `patents` table do not appear in the `inventors` table?
+Find all patents that have at least one worldwide application with `legal_status` = 'Active' in the `worldwide_applications` table.
+List all records in `patent_citations` where `is_family_to_family` = 1 and `examiner_cited` = 1, along with the corresponding `publication_number`.
+How many child applications does each patent have, based on the `child_applications` table?
+Which patents have `publication_date` after '2021-01-01' and also have at least one event of type 'legal-status' in the `events` table?
+Which 3 patents have the highest total number of references in the `patent_citations` table?
+List each patent’s `title` along with every `code` in the `classifications` table (join on `patent_id`).
+Find all `applications_claiming_priority` that reference a specific patent_id (e.g., 'US20180044418A1') and show their `title` and `filing_date`.
+What columns exist in the `error_logs` table, and how can they help debug database insertion problems?

@@ -1,0 +1,29 @@
+# config.yaml
+#
+# Production-Level Comments:
+# --------------------------
+# This YAML file stores non-secret configuration parameters for your Text2SQL application:
+#  1) openai.model_name: Specifies which OpenAI model to use. 
+#     - Common values: "gpt-4", "gpt-3.5-turbo", "gpt-4o" (if you have a special endpoint).
+#     - Ensure you have the appropriate API access for that model.
+#  2) db.sqlite_db_path: The path to your local SQLite database file.
+#     - Can be either an absolute path or relative path.
+#     - "../data/patent.db" means: go up one folder, then into "data/patent.db."
+#  3) collection_name: A label that identifies your Chroma vector collection,
+#     grouping the embedded documents for RAG queries.
+#
+# In production:
+# - If you switch from GPT-4 to GPT-3.5-turbo, you can just change model_name here, 
+#   without altering Python code.
+# - If your SQLite DB file location changes, just update the path.
+# - Keep environment secrets like OPENAI_API_KEY out of YAML, relying on environment variables 
+#   or .env for security.
+#
+# Example:
+openai:
+  model_name: "gpt-4o"          # The OpenAI model name (e.g., "gpt-4", "gpt-3.5-turbo")
+
+db:
+  sqlite_db_path: "data/patent.db"   # Relative path to your SQLite DB
+
+collection_name: "schema_docs_collection"

@@ -1,0 +1,260 @@
+{
+    "patents": {
+        "table_comment": "Stores the core patent record using a text-based primary key (e.g., US20180044418A1). Contains fundamental information like title, type, and key dates.",
+        "columns": {
+            "patent_id": "Text-based unique primary key for the patent (e.g., US20180044418A1).",
+            "title": "Full title of the patent, used for quick references.",
+            "type": "Type of patent (e.g., 'patent', 'utility', etc.).",
+            "pdf_link": "URL to the patent PDF. Useful for immediate access to the full document.",
+            "publication_number": "Official publication identifier (often same as patent_id).",
+            "country": "Country/region of origin (e.g., 'United States').",
+            "application_number": "Number assigned when the application was filed.",
+            "priority_date": "Earliest filing/priority date in YYYY-MM-DD format.",
+            "filing_date": "The date the application was filed (YYYY-MM-DD).",
+            "publication_date": "Official publication date in YYYY-MM-DD format.",
+            "prior_art_date": "Date used for prior art cutoff, if applicable (YYYY-MM-DD).",
+            "family_id": "Identifier for the patent family, if provided.",
+            "abstract": "Summary of the patent's main technical contribution.",
+            "description_link": "Link to a more detailed description or text of the patent."
+        }
+    },
+    "inventors": {
+        "table_comment": "Lists inventors associated with a patent. One patent can have multiple inventors.",
+        "columns": {
+            "id": "Auto-increment primary key for internal tracking.",
+            "patent_id": "References patents(patent_id) to show which patent this inventor relates to.",
+            "inventor_name": "Full name of the inventor (e.g., 'John Doe').",
+            "link": "Optional URL with additional details about the inventor.",
+            "serpapi_link": "Optional SerpApi link specific to this inventor."
+        }
+    },
+    "assignees": {
+        "table_comment": "Captures the entities or organizations that hold the rights to the patent.",
+        "columns": {
+            "id": "Auto-increment primary key for reference.",
+            "patent_id": "Links to the primary patent record via patents(patent_id).",
+            "name": "Name of the assignee (e.g., 'Merck Sharp & Dohme LLC')."
+        }
+    },
+    "prior_art_keywords": {
+        "table_comment": "Contains keywords relevant to prior art, often used for classification or quick searching.",
+        "columns": {
+            "id": "Auto-increment primary key.",
+            "patent_id": "References patents(patent_id).",
+            "keyword": "A single keyword string (e.g., 'cancer')."
+        }
+    },
+    "events": {
+        "table_comment": "Tracks major patent-related events (e.g., filings, publications, assignments).",
+        "columns": {
+            "id": "Primary key (auto-increment).",
+            "patent_id": "Reference to patents(patent_id).",
+            "event_date": "Date the event occurred (YYYY-MM-DD).",
+            "title": "Short description of the event (e.g., 'Application filed').",
+            "type": "Event category (e.g., 'filed', 'publication', 'legal-status').",
+            "critical": "Flag indicating high significance (0 or 1).",
+            "assignee_search": "Info about the assignee if relevant to the event.",
+            "description": "Extended text or notes about the event (could be combined from a list)."
+        }
+    },
+    "external_links": {
+        "table_comment": "External resources or references (e.g., official patent office links).",
+        "columns": {
+            "id": "Auto-increment primary key.",
+            "patent_id": "References patents(patent_id).",
+            "text": "Display label for the link (e.g., 'USPTO').",
+            "link": "Actual URL to the external resource."
+        }
+    },
+    "images": {
+        "table_comment": "Image links for figures or diagrams associated with the patent.",
+        "columns": {
+            "id": "Auto-increment primary key.",
+            "patent_id": "References patents(patent_id).",
+            "image_url": "Direct URL to the patent image."
+        }
+    },
+    "classifications": {
+        "table_comment": "CPC, IPC, or other classification codes describing the technology domain.",
+        "columns": {
+            "id": "Auto-increment key for each classification entry.",
+            "patent_id": "References patents(patent_id).",
+            "code": "Classification code (e.g., 'C07K16/2818').",
+            "description": "Textual explanation of what the code signifies.",
+            "leaf": "Indicates whether this code is at the lowest (leaf) level (0/1).",
+            "first_code": "Flag if it's the first listed classification (0/1).",
+            "is_cpc": "Flag indicating if the code is a CPC code (0/1).",
+            "additional": "Marks if it's an additional classification (0/1)."
+        }
+    },
+    "claims": {
+        "table_comment": "Contains the individual claims text for each patent.",
+        "columns": {
+            "id": "Auto-increment primary key.",
+            "patent_id": "References patents(patent_id).",
+            "claim_no": "The claim's index or number (integer).",
+            "claim_txt": "Full text of this particular claim."
+        }
+    },
+    "applications_claiming_priority": {
+        "table_comment": "Tracks applications that claim priority from the current patent.",
+        "columns": {
+            "id": "Auto-increment primary key.",
+            "patent_id": "References patents(patent_id).",
+            "application_number": "Application identifier for the priority claimant.",
+            "priority_date": "Priority date in YYYY-MM-DD.",
+            "filing_date": "Filing date in YYYY-MM-DD.",
+            "representative_publication": "Representative publication number, if any.",
+            "primary_language": "Language code (e.g., 'en').",
+            "title": "Title of the priority-claiming application."
+        }
+    },
+    "worldwide_applications": {
+        "table_comment": "Shows international (family) applications corresponding to the patent.",
+        "columns": {
+            "id": "Auto-increment primary key.",
+            "patent_id": "References patents(patent_id).",
+            "year": "Year of the application (integer).",
+            "application_number": "Unique app number for this worldwide filing.",
+            "country_code": "Two-letter country/region code (e.g., 'US').",
+            "document_id": "Document identifier if different from application_number.",
+            "filing_date": "Date the worldwide application was filed (YYYY-MM-DD).",
+            "legal_status": "Short descriptor of the legal status (e.g., 'Active').",
+            "legal_status_cat": "Categorized status (e.g., 'active', 'not_active').",
+            "this_app": "Boolean-like flag (0/1) indicating if this corresponds to the same patent application."
+        }
+    },
+    "patent_citations": {
+        "table_comment": "Lists other patents that the current patent references (cites).",
+        "columns": {
+            "id": "Auto-increment primary key.",
+            "patent_id": "References patents(patent_id).",
+            "is_family_to_family": "Marks if the citation is family-to-family (0/1).",
+            "publication_number": "Publication number of the cited patent.",
+            "primary_language": "Language of the cited document.",
+            "examiner_cited": "Marks if an examiner cited it (0/1).",
+            "priority_date": "Priority date of the cited patent (YYYY-MM-DD).",
+            "publication_date": "Publication date of the cited patent (YYYY-MM-DD).",
+            "assignee_original": "Original assignee name, if available.",
+            "title": "Title of the cited patent.",
+            "serpapi_link": "URL from SerpApi for further info.",
+            "patent_id_ref": "Raw reference to the cited patent ID (e.g., 'patent/WO2015035112A1/en')."
+        }
+    },
+    "cited_by": {
+        "table_comment": "Reverse citation data: shows which patents cite this one.",
+        "columns": {
+            "id": "Auto-increment primary key.",
+            "patent_id": "References patents(patent_id).",
+            "is_family_to_family": "Flag for family-to-family citation (0/1).",
+            "publication_number": "Publication number of the citing patent.",
+            "primary_language": "Main language of the citing document.",
+            "examiner_cited": "Indicator if it was examiner-cited (0/1).",
+            "priority_date": "Priority date of the citing patent (YYYY-MM-DD).",
+            "publication_date": "Publication date of the citing patent (YYYY-MM-DD).",
+            "assignee_original": "Original assignee for the citing patent.",
+            "title": "Title of the citing patent.",
+            "serpapi_link": "Link to SerpApi record for further details.",
+            "patent_id_ref": "ID reference for the citing patent."
+        }
+    },
+    "legal_events": {
+        "table_comment": "Tracks legal changes or official updates (assignments, status changes, etc.).",
+        "columns": {
+            "id": "Auto-increment primary key.",
+            "patent_id": "References patents(patent_id).",
+            "date": "When the legal event was recorded (YYYY-MM-DD).",
+            "code": "Abbreviated code (e.g., 'AS', 'STPP').",
+            "title": "Short descriptive label (e.g., 'Assignment').",
+            "attributes_json": "JSON with additional attributes for the event."
+        }
+    },
+    "concepts": {
+        "table_comment": "Stores recognized concepts or compounds extracted from the patent data (title, claims, etc.).",
+        "columns": {
+            "id": "Auto-increment primary key.",
+            "patent_id": "References patents(patent_id).",
+            "concept_id": "Unique identifier from the data (e.g., 'CUI' or similar).",
+            "domain": "Category or domain (e.g., 'Diseases').",
+            "name": "Concept/compound name (e.g., 'Neoplasm').",
+            "similarity": "Numerical score indicating relevance or match strength.",
+            "sections": "Combined list of sections where the concept was found (e.g., 'title;claims').",
+            "count": "Approximate count of how many times the concept appears.",
+            "inchi_key": "InChI key for chemical compounds, if applicable.",
+            "smiles": "SMILES string for the compound, if applicable."
+        }
+    },
+    "child_applications": {
+        "table_comment": "Any child or continuation applications derived from this patent.",
+        "columns": {
+            "id": "Auto-increment primary key.",
+            "patent_id": "References patents(patent_id).",
+            "application_number": "Number assigned to the child application.",
+            "relation_type": "Relationship type (e.g., 'Continuation').",
+            "representative_publication": "Representative publication number for this child.",
+            "primary_language": "Language of the child application (e.g., 'en').",
+            "priority_date": "Earliest priority date (YYYY-MM-DD).",
+            "filing_date": "Filing date (YYYY-MM-DD).",
+            "title": "Title of the child application."
+        }
+    },
+    "parent_applications": {
+        "table_comment": "Any parent or previous continuation applications related to this patent.",
+        "columns": {
+            "id": "Auto-increment primary key.",
+            "patent_id": "References patents(patent_id).",
+            "application_number": "Parent application number.",
+            "relation_type": "Type of parent relationship (e.g., 'Continuation').",
+            "representative_publication": "Representative publication for the parent app.",
+            "primary_language": "Parent application's language code.",
+            "priority_date": "Parent's priority date (YYYY-MM-DD).",
+            "filing_date": "Parent's filing date (YYYY-MM-DD).",
+            "title": "Title of the parent application."
+        }
+    },
+    "priority_applications": {
+        "table_comment": "List of priority applications that the patent claims (besides the earliest).",
+        "columns": {
+            "id": "Auto-increment primary key.",
+            "patent_id": "References patents(patent_id).",
+            "application_number": "Application number for the claimed priority.",
+            "representative_publication": "Representative publication number.",
+            "primary_language": "Language of the priority application.",
+            "priority_date": "Priority date claimed (YYYY-MM-DD).",
+            "filing_date": "Filing date (YYYY-MM-DD).",
+            "title": "Title of the priority application."
+        }
+    },
+    "non_patent_citations": {
+        "table_comment": "Citations to non-patent literature (journals, articles, etc.).",
+        "columns": {
+            "id": "Auto-increment primary key.",
+            "patent_id": "References patents(patent_id).",
+            "citation_title": "Title or short reference of the cited non-patent work.",
+            "examiner_cited": "Indicates if the citation came from the examiner (0/1)."
+        }
+    },
+    "similar_documents": {
+        "table_comment": "Documents (patent or otherwise) deemed similar to this patent.",
+        "columns": {
+            "id": "Auto-increment primary key.",
+            "patent_id": "References patents(patent_id).",
+            "is_patent": "Flag indicating if it's a patent document (0/1).",
+            "doc_patent_id": "If patent, internal ID (e.g., 'patent/US11734097B1/en').",
+            "serpapi_link": "SerpApi link for additional data.",
+            "publication_number": "Official publication number of the similar document.",
+            "primary_language": "Language code of the document.",
+            "publication_date": "Publication date (YYYY-MM-DD).",
+            "title": "Title of the similar document."
+        }
+    },
+    "error_logs": {
+        "table_comment": "Collects error messages for debugging or troubleshooting insertion/processing issues.",
+        "columns": {
+            "id": "Auto-increment primary key.",
+            "error_message": "Short description of the error encountered.",
+            "stack_trace": "Detailed stack trace or diagnostic info, if available.",
+            "created_at": "Timestamp in YYYY-MM-DD HH:MM:SS marking when the error was logged."
+        }
+    }
+}

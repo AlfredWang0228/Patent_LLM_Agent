@@ -1,0 +1,31 @@
+[2025-03-08 05:25:57,673] [INFO] [text_sql_app] Starting Text-to-SQL App
+[2025-03-08 05:25:57,673] [ERROR] [text_sql_app] Failed to init DatabaseManager: SQLite DB not found at path: ../data/patent.db
+[2025-03-08 05:28:29,814] [INFO] [text_sql_app] Starting Text-to-SQL App
+[2025-03-08 05:28:29,815] [ERROR] [text_sql_app] Failed to init DatabaseManager: SQLite DB not found at path: /data/patent.db
+[2025-03-08 05:28:59,769] [INFO] [text_sql_app] Starting Text-to-SQL App
+[2025-03-08 05:31:42,447] [INFO] [text_sql_app] Starting Text-to-SQL App
+[2025-03-08 05:31:45,956] [INFO] [text_sql_app] Received query: hello
+[2025-03-08 05:31:46,832] [INFO] [text_sql_app] Token usage: prompt=603, completion=11, total=614, cost=0.00162 USD
+[2025-03-08 05:31:50,734] [INFO] [text_sql_app] Exiting application.
+[2025-03-08 05:33:57,243] [INFO] [text_sql_app] Starting Text-to-SQL App
+[2025-03-08 05:34:01,362] [INFO] [text_sql_app] Received query: hello
+[2025-03-08 05:34:01,996] [INFO] [text_sql_app] Token usage: prompt=603, completion=11, total=614, cost=0.00162 USD
+[2025-03-08 05:34:07,615] [INFO] [text_sql_app] Received query: my name is alfred
+[2025-03-08 05:34:08,451] [INFO] [text_sql_app] Token usage: prompt=625, completion=25, total=650, cost=0.00181 USD
+[2025-03-08 05:34:21,732] [INFO] [text_sql_app] Received query: yes, what patent has most citations?
+[2025-03-08 05:34:36,600] [INFO] [text_sql_app] Token usage: prompt=4097, completion=117, total=4214, cost=0.00981 USD
+[2025-03-08 05:34:58,514] [INFO] [text_sql_app] Received query: ok please provide me more info about this patent
+[2025-03-08 05:35:08,138] [INFO] [text_sql_app] Token usage: prompt=6037, completion=339, total=6376, cost=0.01672 USD
+[2025-03-08 05:35:22,920] [INFO] [text_sql_app] Received query: please give me more details
+[2025-03-08 05:35:24,216] [INFO] [text_sql_app] Token usage: prompt=2736, completion=50, total=2786, cost=0.00398 USD
+[2025-03-08 05:35:43,844] [INFO] [text_sql_app] Received query: give me summary of the claims
+[2025-03-08 05:35:53,050] [INFO] [text_sql_app] Token usage: prompt=13700, completion=384, total=14084, cost=0.02833 USD
+[2025-03-08 05:36:13,645] [INFO] [text_sql_app] Received query: what's my name?
+[2025-03-08 05:36:15,314] [INFO] [text_sql_app] Token usage: prompt=8236, completion=25, total=8261, cost=0.01748 USD
+[2025-03-08 05:36:23,460] [INFO] [text_sql_app] Received query: what's your name?
+[2025-03-08 05:36:25,134] [INFO] [text_sql_app] Token usage: prompt=8272, completion=43, total=8315, cost=0.01087 USD
+[2025-03-08 05:36:39,133] [INFO] [text_sql_app] Received query: what's the weather today?
+[2025-03-08 05:36:41,109] [INFO] [text_sql_app] Token usage: prompt=8327, completion=47, total=8374, cost=0.01105 USD
+[2025-03-08 05:37:05,280] [INFO] [text_sql_app] Received query: write me a python function to do recursive demo
+[2025-03-08 05:37:12,238] [INFO] [text_sql_app] Token usage: prompt=8389, completion=313, total=8702, cost=0.01370 USD
+[2025-03-08 05:37:35,565] [INFO] [text_sql_app] Exiting application.

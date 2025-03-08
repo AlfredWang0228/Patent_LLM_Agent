@@ -1,0 +1,28 @@
+# serpapi_fetch/config.yaml
+
+#Explanations:
+#	•	input_folder: Path to the folder containing multiple CSVs. We’ll read and concatenate them.
+#	•	filter_condition: A string we search for in specified columns. If empty, we can skip filtering entirely.
+#	•	filter_columns: A list of column names to search. If the condition appears in any of these columns, we keep the row.
+#	•	sort_by: The name of a column to sort on in descending order. If not provided or empty, skip sorting.
+#	•	limit: If > 0, take the top N rows. If 0 or -1, skip limiting.
+#	•	remove_spaces_column: If you want to remove spaces from a certain column, you can specify which column or set it to an empty string to skip.
+#	•	The rest (max_retries, sleep_seconds, skip_if_has_pdf) remain the same as before.
+
+
+
+
+
+input_folder: "data/USPTO"      # Folder containing multiple CSV files
+output_jsonl: "data/SerpAPI/patent_data.jsonl"
+
+# We can define how to filter or if we skip filtering
+filter_condition: "Merck Sharp & Dohme Corp."
+filter_columns: ["Applicant Name", "Assignee"]  # We'll do an OR condition on them
+sort_by: "Relevancy"          # Sort descending by this column
+limit: 66                     # If > 0, take top n rows after sort
+remove_spaces_column: "Document ID"
+
+max_retries: 3
+sleep_seconds: 2
+skip_if_has_pdf: true
